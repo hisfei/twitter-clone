@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:svmj_web/views/globle_layout.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/home_stream.dart';
 
 class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GlobleLayout(
+      widget: HomePageBase(),
+    );
+  }
+}
+
+class HomePageBase extends StatelessWidget {
   final HomeDataController homeDataController = Get.find();
 
   @override

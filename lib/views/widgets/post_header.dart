@@ -6,7 +6,6 @@ import 'package:svmj_web/models/post_item.dart';
 
 class PostHeader extends StatelessWidget {
   final PostItem item;
-  PostContentDataController postContentDataController = Get.find();
   PostHeader({required this.item});
 
   @override
@@ -38,14 +37,11 @@ class PostHeader extends StatelessWidget {
                     ..onTap = () {
                       //dataController.changePage(3); // 切换到 content_page
 
-                      postContentDataController.syncPageRequest(
-                          item.postCode, item.replyCode);
-                      if (!Get.context!.isPhone) {
-                        Get.toNamed('/postContent', id: 1);
-                        //Navigator.pushNamed(context, '/details');
-                      } else {
-                        Get.toNamed('/postContent', id: 2);
-                      }
+                      Get.toNamed('/content/' +
+                          item.postCode.toString() +
+                          '/' +
+                          item.replyCode.toString());
+                      //Navigator.pushNamed(context, '/details');
                     },
                 ),
                 WidgetSpan(

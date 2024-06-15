@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/controllers/home_controller.dart';
 import 'package:svmj_web/models/post_item.dart';
 import 'package:svmj_web/views/widgets/post_header.dart';
 import 'package:svmj_web/views/widgets/imge_grid.dart';
@@ -10,7 +9,6 @@ import 'package:svmj_web/views/widgets/post_actions.dart';
 class HomeStream extends StatelessWidget {
   final PostItem item;
   final int index;
-  final HomeDataController homeDataController = Get.find();
 
   HomeStream({super.key, required this.item, required this.index});
 

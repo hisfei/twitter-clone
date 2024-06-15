@@ -6,7 +6,7 @@ class AuthMiddleWare extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     print("===============Current route: $route");
     // 根据实际业务逻辑检查权限
-    bool isAuthenticated = false; // 替换为实际的认证逻辑
+// 替换为实际的认证逻辑
     // if (!isAuthenticated) {
     return RouteSettings(name: "/login");
     // }

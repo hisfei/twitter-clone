@@ -1,18 +1,26 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/controllers/post_content_controller.dart';
+import 'package:svmj_web/views/globle_layout.dart';
 import 'package:svmj_web/views/login_page.dart';
 
 class PostContentPage extends StatelessWidget {
-  PostContentDataController postContentDataController = Get.find();
+  @override
+  Widget build(BuildContext context) {
+    return GlobleLayout(
+      widget: PostContentPageBase(),
+    );
+  }
+}
 
-  PostContentPage({super.key});
+class PostContentPageBase extends StatelessWidget {
+  PostContentPageBase({super.key});
 
   @override
   Widget build(BuildContext context) {
-    int c = postContentDataController.postCode.value;
-    int d = postContentDataController.replyCode.value;
+    final c = Get.parameters['postCode'];
+
+    final d = Get.parameters['replyCode'];
 
     return Scaffold(
       body: Center(
@@ -22,7 +30,7 @@ class PostContentPage extends StatelessWidget {
             // IconButton(onPressed: Get.back(), icon: Icon)
             IconButton(
                 onPressed: () {
-                  Get.back(id: 2);
+                  Get.back();
                 },
                 icon: const Icon(Icons.arrow_back)),
             Text('$c'),
