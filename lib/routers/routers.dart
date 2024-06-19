@@ -5,6 +5,7 @@ import 'package:svmj_web/views/login_page.dart';
 import 'package:svmj_web/views/post_content_page.dart';
 import 'package:svmj_web/views/profile_page.dart';
 import 'package:svmj_web/views/search_page.dart';
+import 'package:svmj_web/views/unknown_page.dart';
 
 class AppPage {
   static final routes = [
@@ -41,5 +42,6 @@ class AppPage {
       name: "/login",
       page: () => LoginPage(),
     ),
+    GetPage(name: '/notfound', page: () => UnknownPage()),
   ];
 }

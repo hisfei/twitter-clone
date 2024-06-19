@@ -1,15 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/views/globle_layout.dart';
+import 'package:svmj_web/views/widgets/globle_layout.dart';
 import 'package:svmj_web/views/login_page.dart';
 
 class PostContentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GlobleLayout(
-      widget: PostContentPageBase(),
-    );
+    return PostContentPageBase();
   }
 }
 

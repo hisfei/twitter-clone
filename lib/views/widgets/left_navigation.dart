@@ -34,7 +34,7 @@ class leftNavigation extends StatelessWidget {
       IconData icon, String title, int index, String routeName) {
     bool isSelected = homeMenuController.selectedPage.value == index;
     return ListTile(
-      leading: Icon(icon),
+      leading: buildIconButton(icon, title, index, routeName),
       title: Text(
         title,
         style: TextStyle(
@@ -65,8 +65,8 @@ class leftNavigation extends StatelessWidget {
       icon: Icon(icon),
       onPressed: () => onTap(index, routeName),
       color: isSelected
-          ? Colors.blue
-          : Colors.grey, // Example of changing icon color when selected
+          ? Color(0xff279bf0)
+          : Colors.black, // Example of changing icon color when selected
     );
   }
 

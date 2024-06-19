@@ -12,10 +12,12 @@ dynamic makeHttpRequest(String url, dynamic datas) async {
   }; */
 
   Response response = await dio.post(url, data: datas);
+
   if (response.statusCode == 200) {
     // 处理响应数据
     return (response.data);
   }
+  print(response);
 
   // 处理响应数据
   return response;

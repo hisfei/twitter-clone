@@ -4,7 +4,7 @@ class Api {
 
   static const String HOME_REFRESH = BASE_URL + 'homeRefresh'; //刷新
   static const String HOME_LoadMore = BASE_URL + 'homeLoadMore'; //刷新
-
+  static const String HOME_TRENDS = BASE_URL + 'trends'; //刷新
   static const String DO_LOGIN = BASE_URL + 'doLogin'; //登陆
 
   static const String CHECK_LOGIN = BASE_URL + 'checkLogin'; //验证登陆

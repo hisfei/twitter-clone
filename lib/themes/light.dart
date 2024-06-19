@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AppTheme {
   static final ThemeData lighThemeData = ThemeData(
       fontFamily: 'PingFang SC',
-      primaryColor: const Color(0xFF1DA1F2),
+      primaryColor: const Color(0xff279bf0),
       hintColor: const Color(0xFF0D0D10),
       scaffoldBackgroundColor: Colors.white,
       cardColor: Color(0xFFFFFFFF),
@@ -13,6 +14,16 @@ class AppTheme {
         backgroundColor: Color(0xFFFFFFFF), // AppBar 背景色
         foregroundColor: Color(0xFF0D0D10), // AppBar 前景色（图标、文字等）
       ),
+      tabBarTheme: TabBarTheme(
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorColor: Color(0xff279bf0), // 底部导航栏背景色
+          // overlayColor: WidgetStateColor.resolveWith(
+          //   (states) => Color(0xff279bf0).withOpacity(0.3)),
+          labelStyle: TextStyle(color: Color(0xFF0D0D10), fontSize: 14),
+          unselectedLabelColor: Colors.grey,
+          dividerColor: Color(0xffe0e8eb),
+          dividerHeight: 0.5),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Color(0xFFFFFFFF), // 底部导航栏背景色
           selectedItemColor: Color(0xFF0D0D10), // 选中的项颜色
@@ -31,7 +42,7 @@ class AppTheme {
           labelType: NavigationRailLabelType.all,
           selectedLabelTextStyle:
               TextStyle(color: Color(0xFF0D0D10), fontSize: 14),
-          unselectedLabelTextStyle: TextStyle(color: Colors.grey, fontSize: 12),
+          unselectedLabelTextStyle: TextStyle(color: Colors.grey, fontSize: 13),
           useIndicator: false,
           selectedIconTheme: IconThemeData(fill: 1)));
 }

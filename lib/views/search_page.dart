@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/views/globle_layout.dart';
+import 'package:svmj_web/views/widgets/globle_layout.dart';
 
-class SearchPageBase extends StatelessWidget {
-  const SearchPageBase({super.key});
+class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +11,11 @@ class SearchPageBase extends StatelessWidget {
   }
 }
 
-class SearchPage extends StatelessWidget {
+/* class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlobleLayout(
       widget: SearchPageBase(),
     );
   }
-}
+} */

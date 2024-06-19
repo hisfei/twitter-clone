@@ -27,7 +27,7 @@ class ImageGrid extends StatelessWidget {
     return GestureDetector(
       onTap: () => onImageTap(imageUrl),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(10),
         child: Image.network(
           imageUrl,
           fit: BoxFit.cover,
@@ -45,7 +45,7 @@ class ImageGrid extends StatelessWidget {
             child: GestureDetector(
               onTap: () => onImageTap(url),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   url,
                   fit: BoxFit.cover,
@@ -66,7 +66,7 @@ class ImageGrid extends StatelessWidget {
           child: GestureDetector(
             onTap: () => onImageTap(imageUrls[0]),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 imageUrls[0],
                 fit: BoxFit.cover,
@@ -81,7 +81,7 @@ class ImageGrid extends StatelessWidget {
             GestureDetector(
               onTap: () => onImageTap(imageUrls[1]),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   imageUrls[1],
                   fit: BoxFit.cover,
@@ -94,7 +94,7 @@ class ImageGrid extends StatelessWidget {
             GestureDetector(
               onTap: () => onImageTap(imageUrls[2]),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   imageUrls[2],
                   fit: BoxFit.cover,
@@ -111,6 +111,7 @@ class ImageGrid extends StatelessWidget {
 
   Widget _buildGridImages() {
     return GridView.builder(
+      padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: imageUrls.length,
@@ -123,7 +124,7 @@ class ImageGrid extends StatelessWidget {
         return GestureDetector(
           onTap: () => onImageTap(imageUrls[index]),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(10),
             child: Image.network(
               imageUrls[index],
               fit: BoxFit.cover,

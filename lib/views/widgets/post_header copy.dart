@@ -17,15 +17,15 @@ class PostHeader extends StatelessWidget {
         children: [
           ClickableCircleAvatar(
             radius: 30,
-            name: item.isIdea ? item.authorName : item.replyAuthorName,
-            username: item.isIdea ? item.authorCode : item.replyAuthorCode,
+            name: 'John Doe',
+            username: 'johndoe',
             bio: '这是个人简介',
             replyTime: '5分钟前',
             minSize: 30,
-            maxSize: 50,
-            
+            maxSize: 30,
             overlayContent: CustomOverlayContent(),
-            imageUrl: item.isIdea ? item.authorAvatar : item.replyAuthorAvatar,
+            imageUrl:
+                'https://code.404sec.com/avatars/49e147dfd7c4b5b58d91d6c99e7425e73951f48559e740401d956799bf855419',
             onTap: () {
               // 执行其他操作
               print('CircleAvatar 被点击了');
@@ -49,13 +49,13 @@ class PostHeader extends StatelessWidget {
                     ),
                   ),
                   WidgetSpan(
-                    child: SizedBox(width: 8),
+                    child: SizedBox(width: 10),
                   ),
                   TextSpan(
                     text: item.title,
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 15,
+                      fontSize: 14,
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
@@ -69,12 +69,12 @@ class PostHeader extends StatelessWidget {
                       },
                   ),
                   WidgetSpan(
-                    child: SizedBox(width: 8),
+                    child: SizedBox(width: 10),
                   ),
                   TextSpan(
                     text: item.createdAt,
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 12,
                       color: Colors.grey,
                     ),
                   ),
@@ -84,6 +84,9 @@ class PostHeader extends StatelessWidget {
           ),
           const SizedBox(width: 8),
         ],
+      ),
+      const SizedBox(
+        height: 5,
       ),
     ]);
   }

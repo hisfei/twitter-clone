@@ -24,7 +24,7 @@ class HomeDataController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    refreshData();
+    //refreshData();
   }
 
   Future<void> refreshData() async {

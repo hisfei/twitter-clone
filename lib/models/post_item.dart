@@ -1,4 +1,5 @@
 class PostItem {
+  final bool isIdea;
   final int postCode;
   final String postType;
   final String title;
@@ -18,6 +19,7 @@ class PostItem {
   final int commentCount;
 
   PostItem({
+    required this.isIdea,
     required this.postCode,
     required this.postType,
     required this.title,
@@ -39,6 +41,7 @@ class PostItem {
 
   factory PostItem.fromJson(Map<String, dynamic> json) {
     return PostItem(
+      isIdea: json['isIdea'],
       postCode: json['postCode'],
       postType: json['postType'],
       title: json['title'],

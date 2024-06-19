@@ -15,7 +15,7 @@ class HomeStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0.1),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 2),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
         child: Column(
@@ -27,7 +27,7 @@ class HomeStream extends StatelessWidget {
             SelectableText(
               item.replyContent,
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 color: Colors.black54,
               ),
             ),
@@ -41,14 +41,14 @@ class HomeStream extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 8),
             PostActions(index: index),
             const SizedBox(height: 8),
             Center(
               child: Container(
                 height: 0.3,
                 width: 500,
-                color: const Color.fromARGB(255, 215, 215, 215),
+                color: const Color(0xffe0e8eb),
                 margin: const EdgeInsets.only(top: 5.0),
               ),
             ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/views/globle_layout.dart';
+import 'package:svmj_web/views/widgets/globle_layout.dart';
 
-class ProfilePageBase extends StatelessWidget {
-  const ProfilePageBase({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,11 @@ class ProfilePageBase extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
+/* class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlobleLayout(
       widget: ProfilePageBase(),
     );
   }
-}
+} */
