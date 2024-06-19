@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/controllers/post_content_controller.dart';
 import 'package:svmj_web/models/post_item.dart';
 import 'package:svmj_web/views/widgets/avatar.dart';
 import 'package:svmj_web/views/widgets/profile_card.dart';

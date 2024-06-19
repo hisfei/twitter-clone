@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:svmj_web/views/widgets/globle_layout.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});

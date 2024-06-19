@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/home_menu_controller.dart';
 import 'package:svmj_web/views/widgets/border_container.dart';
-import 'package:svmj_web/views/widgets/gloable_content_layout.dart';
 import 'package:svmj_web/views/widgets/left_navigation.dart';
 import 'package:svmj_web/views/widgets/trends_view.dart';
 

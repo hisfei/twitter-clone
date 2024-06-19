@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Search extends StatelessWidget {
   static const Color searchColor = Color(0xffe0e8eb);

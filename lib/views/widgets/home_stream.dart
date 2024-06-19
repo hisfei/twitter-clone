@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:svmj_web/models/post_item.dart';
 import 'package:svmj_web/views/widgets/post_header.dart';
 import 'package:svmj_web/views/widgets/imge_grid.dart';
