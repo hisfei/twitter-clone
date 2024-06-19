@@ -21,7 +21,7 @@ class GloableContentLayout extends StatelessWidget {
       length: showTabs ? tabs.length : 1,
       child: Scaffold(
         body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
+           headerSliverBuilder: (context, innerBoxIsScrolled) {
             if (isSmallScreen) {
               return [
                 CommonStyles.buildAppBar(

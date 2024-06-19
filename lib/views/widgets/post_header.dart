@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/models/post_item.dart';
-import 'package:svmj_web/views/widgets/avatar.dart';
+import 'package:svmj_web/views/widgets/clickable_circle_avatar.dart';
 import 'package:svmj_web/views/widgets/profile_card.dart';
 
 class PostHeader extends StatelessWidget {
@@ -22,7 +22,6 @@ class PostHeader extends StatelessWidget {
             replyTime: '5分钟前',
             minSize: 30,
             maxSize: 50,
-            
             overlayContent: CustomOverlayContent(),
             imageUrl: item.isIdea ? item.authorAvatar : item.replyAuthorAvatar,
             onTap: () {

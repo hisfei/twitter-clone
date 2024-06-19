@@ -19,15 +19,15 @@ class MJ extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       translations: AppTranslations(),
-      locale: Locale('zh', 'CN'),
-      fallbackLocale: Locale('zh', 'CN'),
-      supportedLocales: [
+      locale: const Locale('zh', 'CN'),
+      fallbackLocale: const Locale('zh', 'CN'),
+      supportedLocales: const [
         Locale('zh', 'CN'),
         Locale('en', 'US'),
         Locale('es', 'ES'),
         Locale('fr', 'FR'),
       ],
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

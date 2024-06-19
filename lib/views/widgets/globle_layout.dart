@@ -16,8 +16,9 @@ class GlobleLayout extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return buildWebLayout(context);
+          return SingleChildScrollView(child: buildWebLayout(context));
         },
+        //)
       ),
       bottomNavigationBar: screenWidth <= 500 ? buildBottomBar(context) : null,
     );
@@ -35,17 +36,18 @@ class GlobleLayout extends StatelessWidget {
 
   Widget buildWebLayout(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return Center(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MyBorderContainer(widget: buildLeftNavigation(context)),
-          MyBorderContainer(widget: buildMainContent(context)),
-          buildRightRecommendations(context, screenWidth),
-        ],
-      ),
-    );
+    return Container(
+        height: screenWidth,
+        child: Center(
+            child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MyBorderContainer(widget: buildLeftNavigation(context)),
+            MyBorderContainer(widget: buildMainContent(context)),
+            buildRightRecommendations(context, screenWidth),
+          ],
+        )));
   }
 
   Widget buildLeftNavigation(BuildContext context) {
@@ -59,14 +61,13 @@ class GlobleLayout extends StatelessWidget {
   }
 
   Widget buildMainContent(BuildContext context) {
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 5.0), // 控制距离顶部的距离
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 600.0, minWidth: 380),
-          child: widget,
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0), // 控制距离顶部的距离
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 600.0, minWidth: 380),
+        child: widget,
       ),
+      //),
     );
   }
 

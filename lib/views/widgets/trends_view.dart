@@ -35,22 +35,26 @@ class TrendsView extends StatelessWidget {
                   width: 0.50, // 设置上边框宽度
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Trends for you',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  ...controller.trends
-                      .map((trend) => buildTrendItem(trend))
-                      .toList(),
-                ],
-              ),
+              child: GestureDetector(
+                  onTap: () {
+                    print('Column 被点击了！');
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Trends for you',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      ...controller.trends
+                          .map((trend) => buildTrendItem(trend))
+                          .toList(),
+                    ],
+                  )),
             )
           ]),
         );
@@ -59,6 +63,37 @@ class TrendsView extends StatelessWidget {
   }
 
   Widget buildTrendItem(Trend trend) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          trend.topic,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 14,
+          ),
+        ),
+        SizedBox(height: 4),
+        Text(
+          trend.title,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 4),
+        Text(
+          trend.tweetCount.toString(),
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 14,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget listTitle(Trend trend) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

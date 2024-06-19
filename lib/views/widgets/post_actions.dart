@@ -48,7 +48,7 @@ class PostActions extends StatelessWidget {
             }
           },
           child: Obx(() => Icon(
-                homeDataController.isSharedList[index]
+                homeDataController.isForYouSharedList[index]
                     ? CupertinoIcons.share
                     : Icons.ios_share_outlined,
                 color: Colors.grey,
