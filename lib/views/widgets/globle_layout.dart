@@ -18,7 +18,6 @@ class GlobleLayout extends StatelessWidget {
         builder: (context, constraints) {
           return SingleChildScrollView(child: buildWebLayout(context));
         },
-        //)
       ),
       bottomNavigationBar: screenWidth <= 500 ? buildBottomBar(context) : null,
     );
@@ -44,8 +43,16 @@ class GlobleLayout extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             buildLeftNavigation(context),
-            MyBorderContainer(
-                widget: buildMainContent(context), location: 'lr'),
+            Flexible(
+              child: ConstrainedBox(
+                constraints:
+                    const BoxConstraints(maxWidth: 600.0, minWidth: 380),
+                child: Container(
+                    child: MyBorderContainer(
+                        widget: buildMainContent(context), location: 'lr')),
+              ),
+            ),
+            //MyBorderContainer(widget: buildMainContent(context), location: 'lr'),
             buildRightRecommendations(context, screenWidth),
           ],
         )));
