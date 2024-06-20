@@ -27,7 +27,7 @@ class GlobleLayout extends StatelessWidget {
   double getNavigationWidth(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
     if (screenWidth >= 1150) {
-      return 250;
+      return 190;
     } else if (screenWidth > 600) {
       return 70;
     }
@@ -35,16 +35,17 @@ class GlobleLayout extends StatelessWidget {
   }
 
   Widget buildWebLayout(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
     return Container(
-        height: screenWidth,
+        height: 1000,
         child: Center(
             child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MyBorderContainer(widget: buildLeftNavigation(context)),
-            MyBorderContainer(widget: buildMainContent(context)),
+            buildLeftNavigation(context),
+            MyBorderContainer(
+                widget: buildMainContent(context), location: 'lr'),
             buildRightRecommendations(context, screenWidth),
           ],
         )));
@@ -64,7 +65,7 @@ class GlobleLayout extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0), // 控制距离顶部的距离
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 600.0, minWidth: 380),
+        constraints: BoxConstraints(maxWidth: 600.0, minWidth: 350),
         child: widget,
       ),
       //),

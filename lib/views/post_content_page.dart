@@ -35,7 +35,7 @@ class PostContentPageBase extends StatelessWidget {
             SelectableText.rich(TextSpan(
               text: ' item.title',
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 fontSize: 15,
               ),
               recognizer: TapGestureRecognizer()

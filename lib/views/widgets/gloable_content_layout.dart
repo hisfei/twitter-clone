@@ -14,14 +14,14 @@ class GloableContentLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isSmallScreen = MediaQuery.sizeOf(context).width <= 500;
+    final bool isSmallScreen = MediaQuery.sizeOf(context).width <= 600;
     final bool showTabs = tabs.length > 1;
 
     return DefaultTabController(
       length: showTabs ? tabs.length : 1,
       child: Scaffold(
         body: NestedScrollView(
-           headerSliverBuilder: (context, innerBoxIsScrolled) {
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
             if (isSmallScreen) {
               return [
                 CommonStyles.buildAppBar(
