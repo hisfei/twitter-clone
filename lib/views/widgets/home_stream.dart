@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:svmj_web/models/post_item.dart';
+import 'package:svmj_web/themes/light.dart';
 import 'package:svmj_web/views/widgets/post_header.dart';
 import 'package:svmj_web/views/widgets/imge_grid.dart';
 import 'package:svmj_web/views/widgets/image_viewer.dart';
@@ -40,14 +41,14 @@ class HomeStream extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             PostActions(index: index),
-            const SizedBox(height: 8),
+            const SizedBox(height: 5),
             Center(
               child: Container(
                 height: 0.3,
-                width: 500,
-                color: const Color(0xffe0e8eb),
+                width: 450,
+                color: MyColor.borderGrey,
                 margin: const EdgeInsets.only(top: 5.0),
               ),
             ),

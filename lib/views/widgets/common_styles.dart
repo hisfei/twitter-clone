@@ -30,14 +30,14 @@ class CommonStyles {
     return CircleAvatar(
       backgroundColor: Colors.transparent,
       child: ClipOval(
-        child: Image.network(
-          url,
+        child: Image(
+          image: NetworkImage(url),
           width: width,
           height: height,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
             print(error);
-            return Icon(Icons.error);
+            return const Icon(Icons.error);
           },
         ),
       ),
@@ -61,7 +61,7 @@ class CommonStyles {
       fit: BoxFit.cover,
       errorBuilder: (context, error, stackTrace) {
         print(error);
-        return Icon(Icons.error);
+        return const Icon(Icons.error);
       },
     );
   }

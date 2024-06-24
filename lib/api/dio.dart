@@ -9,9 +9,9 @@ dynamic makeHttpRequest(String url, dynamic data) async {
   Response response = await dio.post(url, data: data);
 
   if (response.statusCode == 200) {
+    // print(response);
     return response.data;
   }
 
-  print(response);
   return response;
 }

@@ -12,8 +12,8 @@ class ImageViewer extends StatelessWidget {
         onTap: () => Navigator.of(context).pop(),
         child: Container(
           color: Colors.black,
-          child: Image.network(
-            imageUrl,
+          child: Image(
+            image: NetworkImage(imageUrl),
             fit: BoxFit.contain,
           ),
         ),

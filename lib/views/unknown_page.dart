@@ -7,9 +7,9 @@ class UnknownPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Unknown Route'),
+        title: const Text('Unknown Route'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('404 - Page Not Found'),
       ),
     );

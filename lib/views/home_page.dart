@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:svmj_web/views/widgets/gloable_content_layout.dart';
 import 'package:svmj_web/views/widgets/globle_layout.dart';
 import 'package:svmj_web/views/widgets/home_stream.dart';
-import '../controllers/home_controller.dart';
+import '../controllers/home_stream_controller.dart';
 
 class HomePage extends StatelessWidget {
-  final HomeDataController homeDataController = Get.find();
+  final HomeStreamController homeStreamController = Get.find();
   // final AnotherController anotherController = Get.put();
 
   @override
@@ -22,8 +22,8 @@ class HomePage extends StatelessWidget {
         buildFollowingList(context),
       ],
       onRefreshCallbacks: [
-        homeDataController.refreshForYou,
-        homeDataController.refreshFollowing, // Example for another tab
+        homeStreamController.refreshForYou,
+        homeStreamController.refreshFollowing, // Example for another tab
       ],
     ));
   }
@@ -35,15 +35,15 @@ class HomePage extends StatelessWidget {
           context: context,
           child: ListView.builder(
             padding: EdgeInsets.zero,
-            itemCount: homeDataController.itemsForYou.length + 1,
+            itemCount: homeStreamController.itemsForYou.length + 1,
             itemBuilder: (context, index) {
-              if (index == homeDataController.itemsForYou.length) {
-                homeDataController.loadMoreForYou();
+              if (index == homeStreamController.itemsForYou.length) {
+                homeStreamController.loadMoreForYou();
 
                 return Center(child: CircularProgressIndicator());
               }
               return HomeStream(
-                item: homeDataController.itemsForYou[index],
+                item: homeStreamController.itemsForYou[index],
                 index: index,
               );
             },
@@ -58,15 +58,15 @@ class HomePage extends StatelessWidget {
           context: context,
           child: ListView.builder(
             padding: EdgeInsets.zero,
-            itemCount: homeDataController.itemsFollowing.length + 1,
+            itemCount: homeStreamController.itemsFollowing.length + 1,
             itemBuilder: (context, index) {
-              if (index == homeDataController.itemsFollowing.length) {
-                homeDataController.loadMoreFollowing();
+              if (index == homeStreamController.itemsFollowing.length) {
+                homeStreamController.loadMoreFollowing();
 
                 return Center(child: CircularProgressIndicator());
               }
               return HomeStream(
-                item: homeDataController.itemsFollowing[index],
+                item: homeStreamController.itemsFollowing[index],
                 index: index,
               );
             },

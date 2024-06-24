@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/api/status.dart';
-import 'package:svmj_web/controllers/home_controller.dart';
+import 'package:svmj_web/controllers/home_stream_controller.dart';
 
 class PostActions extends StatelessWidget {
   final int index;
-  final HomeDataController homeDataController = Get.find();
+  final HomeStreamController homeStreamController = Get.find();
 
   PostActions({required this.index});
 
@@ -42,13 +41,12 @@ class PostActions extends StatelessWidget {
         const SizedBox(),
         GestureDetector(
           onTap: () {
-            if (homeDataController.loadingStatus.value !=
-                LoadingStatus.loading) {
-              homeDataController.toggleShareAt(index);
+            if (homeStreamController.loadingStat.value !=1 ) {
+              homeStreamController.toggleShareAt(index);
             }
           },
           child: Obx(() => Icon(
-                homeDataController.isForYouSharedList[index]
+                homeStreamController.isForYouSharedList[index]
                     ? CupertinoIcons.share
                     : Icons.ios_share_outlined,
                 color: Colors.grey,

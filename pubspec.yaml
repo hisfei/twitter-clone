@@ -32,7 +32,9 @@ dependencies:
     sdk: flutter
   get:
   http:
+  cached_network_image:
   dio:
+  google_fonts:
   get_storage:
   flutter_feather_icons: ^2.0.0+1
   flutter_localizations:

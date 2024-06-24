@@ -28,7 +28,7 @@ class GloableContentLayout extends StatelessWidget {
                     1,
                     CommonStyles.buildAssetImage('images/logo.png', 50),
                     CommonStyles.buildNetworkImage(
-                      'https://code.404sec.com/avatars/49e147dfd7c4b5b58d91d6c99e7425e73951f48559e740401d956799bf855419',
+                      'http://127.0.0.1:8080/static/2.png',
                       35,
                       35,
                     ),
@@ -40,8 +40,8 @@ class GloableContentLayout extends StatelessWidget {
               return [
                 CommonStyles.buildAppBar(
                     2,
-                    Text(''),
-                    Text(''),
+                    const Text(''),
+                    const Text(''),
                     TabBar(
                       tabs: tabs,
                     ))
@@ -74,6 +74,6 @@ class GloableContentLayout extends StatelessWidget {
                 : () async {},
             child: tabViews[0],
           )
-        : Center(child: Text("No Content"));
+        : const Center(child: Text("No Content"));
   }
 }

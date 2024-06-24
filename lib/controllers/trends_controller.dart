@@ -20,7 +20,7 @@ class TrendsController extends GetxController {
       isLoading(true);
 
       final response = await makeHttpRequest(
-          (Api.HOME_TRENDS),
+          (Api.homeTrends),
           jsonEncode(<String, dynamic>{
             'userCode': 'items.length',
           }));

@@ -1,8 +1,10 @@
 class Api {
-  static const String BASE_URL = 'http://127.0.0.1:8080/api/';
+  static const String baseUrl = 'http://127.0.0.1:8080/api/';
 
-  static const String HOME_REFRESH = BASE_URL + 'homeRefresh';
-  static const String HOME_LOAD_MORE = BASE_URL + 'homeLoadMore';
-  static const String HOME_TRENDS = BASE_URL + 'trends';
-  static const String DO_LOGIN = BASE_URL + 'login';
+  static const String homeRefresh = '${baseUrl}homeRefresh';
+  static const String homeLoadMore = '${baseUrl}homeLoadMore';
+  static const String homeTrends = '${baseUrl}trends';
+  static const String doLogin = '${baseUrl}login';
+  static const String profileUserInfo = '${baseUrl}userInfo';
+  static const String profileUserInfoList = '${baseUrl}userList';
 }

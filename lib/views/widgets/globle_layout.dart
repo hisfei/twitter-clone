@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/home_menu_controller.dart';
+import 'package:svmj_web/themes/light.dart';
 import 'package:svmj_web/views/widgets/border_container.dart';
 import 'package:svmj_web/views/widgets/left_navigation.dart';
 import 'package:svmj_web/views/widgets/trends_view.dart';
@@ -19,14 +21,14 @@ class GlobleLayout extends StatelessWidget {
           return SingleChildScrollView(child: buildWebLayout(context));
         },
       ),
-      bottomNavigationBar: screenWidth <= 500 ? buildBottomBar(context) : null,
+      bottomNavigationBar: screenWidth <= 600 ? buildBottomBar(context) : null,
     );
   }
 
   double getNavigationWidth(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
     if (screenWidth >= 1150) {
-      return 190;
+      return 250;
     } else if (screenWidth > 600) {
       return 70;
     }
@@ -35,7 +37,7 @@ class GlobleLayout extends StatelessWidget {
 
   Widget buildWebLayout(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
-    return Container(
+    return SizedBox(
         height: 1000,
         child: Center(
             child: Row(
@@ -61,9 +63,9 @@ class GlobleLayout extends StatelessWidget {
   Widget buildLeftNavigation(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0), // 控制距离顶部的距离
-      child: Container(
+      child: SizedBox(
         width: getNavigationWidth(context),
-        child: leftNavigation(),
+        child: LeftNavigation(),
       ),
     );
   }
@@ -72,7 +74,7 @@ class GlobleLayout extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0), // 控制距离顶部的距离
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 600.0, minWidth: 350),
+        constraints: const BoxConstraints(maxWidth: 600.0, minWidth: 350),
         child: widget,
       ),
       //),
@@ -84,7 +86,7 @@ class GlobleLayout extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5.0), // 控制距离顶部的距离
       child: SizedBox(
         width: screenWidth >= 970 ? 350 : 0,
-        child: screenWidth >= 970 ? TrendsView() : null,
+        child: screenWidth >= 970 ? const TrendsView() : null,
       ),
     );
   }
@@ -94,10 +96,21 @@ class GlobleLayout extends StatelessWidget {
 
     return Obx(() => BottomNavigationBar(
           currentIndex: homeMenuController.selectedPage.value,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          items: [
+            BottomNavigationBarItem(
+                backgroundColor: MyColor.white,
+                icon: const Icon(
+                  CupertinoIcons.home,
+                ),
+                label: 'Home'),
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.search), label: 'Search'),
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.circle_grid_hex), label: 'MindRealm'),
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.chat_bubble_2), label: 'message'),
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.bell), label: 'notifications'),
           ],
           onTap: (index) {
             homeMenuController.changePage(index);
@@ -109,7 +122,13 @@ class GlobleLayout extends StatelessWidget {
                 Get.offAllNamed('/search');
                 break;
               case 2:
-                Get.offAllNamed('/profile');
+                Get.offAllNamed('/mindrealm');
+                break;
+              case 3:
+                Get.offAllNamed('/message');
+                break;
+              case 4:
+                Get.offAllNamed('/notifications');
                 break;
               default:
                 Get.offAllNamed('/home');

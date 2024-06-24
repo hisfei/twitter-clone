@@ -32,7 +32,7 @@ class MyBorderContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BorderSide borderSide = BorderSide(
+    BorderSide borderSide = const BorderSide(
       color: Color(0xffe0e8eb),
       width: 0.5,
     );

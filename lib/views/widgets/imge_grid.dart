@@ -28,8 +28,8 @@ class ImageGrid extends StatelessWidget {
       onTap: () => onImageTap(imageUrl),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Image.network(
-          imageUrl,
+        child: Image(
+          image: NetworkImage(imageUrl),
           fit: BoxFit.cover,
         ),
       ),
@@ -46,8 +46,8 @@ class ImageGrid extends StatelessWidget {
               onTap: () => onImageTap(url),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  url,
+                child: Image(
+                  image: NetworkImage(url),
                   fit: BoxFit.cover,
                   height: 150.0,
                 ),
@@ -67,8 +67,8 @@ class ImageGrid extends StatelessWidget {
             onTap: () => onImageTap(imageUrls[0]),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                imageUrls[0],
+              child: Image(
+                image: NetworkImage(imageUrls[0]),
                 fit: BoxFit.cover,
                 height: 150.0,
               ),
@@ -82,8 +82,8 @@ class ImageGrid extends StatelessWidget {
               onTap: () => onImageTap(imageUrls[1]),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  imageUrls[1],
+                child: Image(
+                  image: NetworkImage(imageUrls[1]),
                   fit: BoxFit.cover,
                   height: 72.0,
                   width: 150.0,
@@ -95,8 +95,8 @@ class ImageGrid extends StatelessWidget {
               onTap: () => onImageTap(imageUrls[2]),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  imageUrls[2],
+                child: Image(
+                  image: NetworkImage(imageUrls[2]),
                   fit: BoxFit.cover,
                   height: 72.0,
                   width: 150.0,
@@ -125,8 +125,8 @@ class ImageGrid extends StatelessWidget {
           onTap: () => onImageTap(imageUrls[index]),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              imageUrls[index],
+            child: Image(
+              image: NetworkImage(imageUrls[index]),
               fit: BoxFit.cover,
             ),
           ),

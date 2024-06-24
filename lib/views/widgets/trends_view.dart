@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/trends_controller.dart';
 import 'package:svmj_web/models/trend_for_you.dart';
-import 'package:svmj_web/views/widgets/border_container.dart';
+import 'package:svmj_web/themes/light.dart';
 import 'package:svmj_web/views/widgets/search.dart';
 
 class TrendsView extends StatelessWidget {
@@ -14,9 +14,9 @@ class TrendsView extends StatelessWidget {
 
     return Obx(() {
       if (controller.isLoading.value) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       } else if (controller.trends.isEmpty) {
-        return Center(child: Text('No trends available.'));
+        return const Center(child: Text('No trends available.'));
       } else {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -24,7 +24,7 @@ class TrendsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Search(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Expanded(
               //child:
               Container(
@@ -32,19 +32,19 @@ class TrendsView extends StatelessWidget {
                 width: 350,
                 padding: const EdgeInsets.only(top: 15.0),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   border: Border.all(
-                    color: Color(0xffe0e8eb), // 设置边框颜色
+                    color: MyColor.borderGrey, // 设置边框颜色
                     width: 0.50, // 设置边框宽度
                   ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                         height: 42,
                         child: SelectableText.rich(TextSpan(
-                          text: '  Trends for you',
+                          text: '  ${'trendsforyou'.tr}',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -52,19 +52,14 @@ class TrendsView extends StatelessWidget {
                         ))),
                     //Expanded(
                     //child:
-                    Container(
-                      //height: 200,
-                      //constraints: BoxConstraints(maxHeight: 780, minHeight: 0),
-                      child: ListView(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        children: controller.trends
-                            .map((trend) => buildTrendItem(context, trend))
-                            .toList(),
-                      ),
-                      //)
+                    ListView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      children: controller.trends
+                          .map((trend) => buildTrendItem(context, trend))
+                          .toList(),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                   ],
                 ),
                 //),
@@ -91,26 +86,26 @@ class TrendsView extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   trend.topic,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 13,
                   ),
                 ),
-                SizedBox(height: 2),
+                const SizedBox(height: 2),
                 Text(
                   trend.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 2),
+                const SizedBox(height: 2),
                 Text(
                   trend.tweetCount.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 13,
                   ),
@@ -119,36 +114,51 @@ class TrendsView extends StatelessWidget {
             ),
             // SizedBox(height: 10),
             IconButton(
-              icon: Icon(Icons.more_vert),
+              icon: const Icon(Icons.more_horiz_outlined),
               onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Options'),
-                      content: Text('Choose an option.'),
-                      actions: <Widget>[
-                        TextButton(
-                          child: Text('Option 1'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: Text('Option 2'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
+                _showCustomMenu(context);
               },
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void _showCustomMenu(BuildContext context) async {
+    final RenderBox button = context.findRenderObject() as RenderBox;
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
+
+    final RelativeRect position = RelativeRect.fromRect(
+      Rect.fromPoints(
+        button.localToGlobal(Offset.zero, ancestor: overlay),
+        button.localToGlobal(button.size.bottomRight(Offset.zero),
+            ancestor: overlay),
+      ),
+      Offset.zero & overlay.size,
+    );
+
+    await showMenu(
+      context: context,
+      position: position,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      items: [
+        const PopupMenuItem<int>(
+          value: 0,
+          child: Text('First Item'),
+        ),
+        const PopupMenuItem<int>(
+          value: 1,
+          child: Text('Second Item'),
+        ),
+        const PopupMenuItem<int>(
+          value: 2,
+          child: Text('Third Item'),
+        ),
+      ],
     );
   }
 }

@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:svmj_web/views/widgets/gloable_content_layout.dart';
 import 'package:svmj_web/views/widgets/globle_layout.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  // final AnotherController anotherController = Get.put();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("Profile"),
-    );
+    return GlobleLayout(
+        widget: GloableContentLayout(
+      tabs: [
+        Tab(text: 'foryou'.tr),
+        // Tab(text: 'following'.tr),
+      ],
+      tabViews: [
+        buildSearch(context),
+        //buildFollowingList(context),
+      ],
+      onRefreshCallbacks: [
+        //homeStreamController.refreshForYou,
+        //homeStreamController.refreshFollowing, // Example for another tab
+      ],
+    ));
+  }
+
+  Widget buildSearch(BuildContext context) {
+    return Text('${Get.parameters['searchParam']}');
   }
 }
