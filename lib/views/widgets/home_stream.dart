@@ -9,11 +9,12 @@ import 'package:svmj_web/views/widgets/post_actions.dart';
 class HomeStream extends StatelessWidget {
   final PostItem item;
   final int index;
+ final int type ;
 
-  HomeStream({super.key, required this.item, required this.index});
+  HomeStream({super.key, required this.item, required this.index, required this.type });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context ) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 2),
       child: Padding(
@@ -36,13 +37,13 @@ class HomeStream extends StatelessWidget {
               imageUrls: item.imageUrls,
               onImageTap: (imageUrl) {
                 showDialog(
-                  context: context,
+                  context: context ,
                   builder: (context) => ImageViewer(imageUrl: imageUrl),
                 );
               },
             ),
             const SizedBox(height: 10),
-            PostActions(index: index),
+            PostActions(index: index,type: type,),
             const SizedBox(height: 5),
             Center(
               child: Container(

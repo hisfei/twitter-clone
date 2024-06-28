@@ -29,8 +29,7 @@ class TrendsController extends GetxController {
         trends.add(Trend.fromJson(item));
       }
     } catch (error) {
-      print(error);
-      throw Exception('Failed to load trends: $error');
+       throw Exception('Failed to load trends: $error');
     } finally {
       isLoading(false);
     }

@@ -2,21 +2,17 @@
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:svmj_web/controllers/clickable_circle_avatar_controller.dart';
-import 'package:svmj_web/controllers/user_info_controller.dart';
 import 'package:svmj_web/themes/light.dart';
 
 class ProfileCard extends StatelessWidget {
-  final ClickableCircleAvatarController clickableCircleAvatarController = Get.find();
-  final UserInfoController profileCard = Get.find();
-  final String userCode;
+  final ClickableCircleAvatarController controller = Get.find();
 
-  ProfileCard({super.key, required this.userCode});
+  ProfileCard({super.key });
 
   @override
   Widget build(BuildContext context) {
-    profileCard.getUserInfo(userCode);
-    return Obx(() {
-      if (profileCard.loadingStat.value != 2) {
+     return Obx(() {
+      if (controller.loadingStat.value != 2) {
         return Container(
             width: 280,
             padding: const EdgeInsets.all(10),
@@ -35,8 +31,8 @@ class ProfileCard extends StatelessWidget {
       } else {
         return MouseRegion(
             onEnter: (_) =>
-                clickableCircleAvatarController.showOverlay(context),
-            onExit: (_) => clickableCircleAvatarController.hideOverlay(0),
+                controller.showOverlay(context,controller.u.value.userCode),
+            onExit: (_) => controller.hideOverlay(0),
             child: Container(
               width: 280,
               padding: const EdgeInsets.all(10),
@@ -58,7 +54,7 @@ class ProfileCard extends StatelessWidget {
                   HeaderSection(context),
                   const SizedBox(height: 10),
                   Text(
-                    profileCard.u.value.bio,
+                    controller.u.value.bio,
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                     ),
@@ -68,13 +64,13 @@ class ProfileCard extends StatelessWidget {
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       StatItem(
-                          count: profileCard.u.value.followingCount,
+                          count: controller.u.value.followingCount,
                           label: 'Following'),
                       const SizedBox(
                         width: 15,
                       ),
                       StatItem(
-                          count: profileCard.u.value.followerCount,
+                          count: controller.u.value.followerCount,
                           label: 'Followers'),
                     ],
                   ),
@@ -98,7 +94,7 @@ class ProfileCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: NetworkImage(profileCard.u.value.userAvatar),
+            backgroundImage: NetworkImage(controller.u.value.userAvatar),
           ),
           const SizedBox(width: 10),
           ElevatedButton(
@@ -120,7 +116,7 @@ class ProfileCard extends StatelessWidget {
         Row(
           children: [
             Text(
-              profileCard.u.value.userName,
+              controller.u.value.userName,
               style: GoogleFonts.roboto(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
@@ -134,7 +130,7 @@ class ProfileCard extends StatelessWidget {
           ],
         ),
         Text(
-          '@${profileCard.u.value.userCode}',
+          '@${controller.u.value.userCode}',
           style: GoogleFonts.roboto(
             fontSize: 13,
             color: Colors.grey[600],

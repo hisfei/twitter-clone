@@ -1,10 +1,12 @@
- import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/home_menu_controller.dart';
 import 'package:svmj_web/controllers/login_user_info.dart';
 import 'package:svmj_web/models/user_info.dart';
-import 'package:svmj_web/themes/light.dart';
+import 'package:svmj_web/routers/jump.dart';
+ import 'package:svmj_web/themes/light.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
@@ -19,25 +21,28 @@ class LeftNavigation extends StatelessWidget {
           double width = MediaQuery.sizeOf(context).width;
           if (width >= 1150) {
             return buildListView(context);
-          } else if (width > 600) {
-            return buildCenteredIcons(context);
-          } else {
-            return Container(); // Return an empty container for smaller widths
           }
+          if (kIsWeb && width <1150 ){
+            return buildCenteredIcons(context);
+          }
+          if (!kIsWeb &&width>=600){
+            return buildCenteredIcons(context);
+          }
+          return   const SizedBox.shrink(); ;
         },
       )),
     );
   }
 
   Widget buildListView(BuildContext context) {
-    return Column(children: [
+    return Obx(()=>ListView(children: [
       const Text('Logo'),
       ...buildMenuItems(context),
       const SizedBox(
         height: 250,
       ),
       ProfileMenuButton(),
-    ]);
+    ]));
   }
 
   List<Widget> buildMenuItems(context) {
@@ -60,8 +65,8 @@ class LeftNavigation extends StatelessWidget {
 
   Widget buildPostButton(context) {
     return Container(
-        padding: const EdgeInsets.only(left: 20.0, right: 50),
-        width: 150.0, // 设置宽度
+        padding: const EdgeInsets.only(left: 15.0, right: 50),
+        //width: 200.0, // 设置宽度
         height: 50.0, // 设置高度
         child: ElevatedButton(
           style: ButtonStyle(
@@ -92,7 +97,7 @@ class LeftNavigation extends StatelessWidget {
   }
 
   Widget buildCenteredIcons(BuildContext context) {
-    return Center(
+    return Obx(()=>Center(
       child: Column(
         children: [
           buildIconButton(CupertinoIcons.home, 0, 'home'),
@@ -106,7 +111,7 @@ class LeftNavigation extends StatelessWidget {
           buildIconButton(CupertinoIcons.person, 6, 'profile'),
         ],
       ),
-    );
+    ));
   }
 
   Widget buildListTile(
@@ -118,7 +123,11 @@ class LeftNavigation extends StatelessWidget {
     bool isSelected = homeMenuController.selectedPage.value == index;
 
     return ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      //hoverColor: Colors.blue.withOpacity(0.5), // 指定划过颜色和透明度
+      // 可以根据需求调整划过效果的持续时间
+       //hoverColor: Colors.blue.withOpacity(0), // 设置划过效果的持续时间为500毫秒
+      splashColor: Colors.transparent,
+       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       minTileHeight: 60,
       leading: buildIconButton(icon, index, routeName),
       title: Text(
@@ -185,7 +194,9 @@ class LeftNavigation extends StatelessWidget {
 
   void onTap(int index, String name) {
     homeMenuController.changePage(index);
-    index == 0 ? Get.offAndToNamed('/') : Get.offAndToNamed('/$name');
+
+    JumpOffTo('/$name'   );
+ //   index == 0 ? Get.offAndToNamed('/') : Get.offAndToNamed('/$name' );
   }
 }
 
@@ -196,7 +207,8 @@ class ProfileMenuButton extends StatelessWidget {
     UserInfo userInfo = userInfoController.getUserInfo();
 
     return ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      splashColor: Colors.transparent,
+       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       minTileHeight: 60,
       leading: CircleAvatar(
           radius: 20,
@@ -220,49 +232,5 @@ class ProfileMenuButton extends StatelessWidget {
       ]),
       onTap: () => {Get.offAllNamed('/profile')},
     );
-
   }
 }
-/* 
-class ProfileMenuButton2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    LoginInfoController userInfoController = Get.find();
-    UserInfo userInfo = userInfoController.getUserInfo();
-
-    return GetBuilder<PopMenuController>(
-        init: PopMenuController(), // 初始化 GetX 控制器
-        builder: (controller) {
-          controller.updateOverlayContent(
-              ProfileCard(userCode: 'item.replyAuthorCode'));
-
-          return ListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            minTileHeight: 60,
-            leading: CircleAvatar(
-                radius: 20,
-                backgroundImage: NetworkImage(
-                    userInfoController.getUserInfo().backgroundUrl)),
-            title:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                userInfo.userName,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                '@' + userInfo.userCode,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
-              ),
-            ]),
-            onTap: () => {Get.offAllNamed('/profile')},
-          );
-        });
-  }
-} */

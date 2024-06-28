@@ -17,6 +17,7 @@ class GloableContentLayout extends StatelessWidget {
     final bool isSmallScreen = MediaQuery.sizeOf(context).width <= 600;
     final bool showTabs = tabs.length > 1;
 
+
     return DefaultTabController(
       length: showTabs ? tabs.length : 1,
       child: Scaffold(

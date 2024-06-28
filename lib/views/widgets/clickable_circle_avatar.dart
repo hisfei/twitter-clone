@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/clickable_circle_avatar_controller.dart';
 
+
 class ClickableCircleAvatar2 extends StatelessWidget {
   final double radius;
   final String imageUrl;
@@ -13,8 +14,8 @@ class ClickableCircleAvatar2 extends StatelessWidget {
   final VoidCallback onTap;
   final double minSize;
   final double maxSize;
-
-  ClickableCircleAvatar2({
+ // BuildContext contexted;
+  ClickableCircleAvatar2({super.key,
     required this.radius,
     required this.imageUrl,
     required this.userName,
@@ -23,23 +24,22 @@ class ClickableCircleAvatar2 extends StatelessWidget {
     required this.replyTime,
     required this.overlayContent,
     required this.onTap,
+   // required this.contexted,
     this.minSize = 60,
     this.maxSize = 100,
   });
-
+  ClickableCircleAvatarController controller =Get.find();
   @override
-  Widget build(BuildContext context) {
-    return GetBuilder<ClickableCircleAvatarController>(
-      init: ClickableCircleAvatarController(), // 初始化 GetX 控制器
-      builder: (controller) {
-        controller.updateOverlayContent(overlayContent);
-        return Container(
+  Widget build( BuildContext context) {
+   controller.updateOverlayContent(overlayContent);
+         return Container(
           constraints: const BoxConstraints(maxWidth: 360),
           child: Row(
             children: [
               MouseRegion(
-                onEnter: (_) => controller.showOverlay(context),
-                //onExit: (_) => controller.hideOverlay(500),
+
+                onEnter: (_) => controller.showOverlay(context,userCode),
+                 onExit: (_) => controller.cancalTimer( ),
                 child: GestureDetector(
                   child: Container(
                     child: ConstrainedBox(
@@ -112,7 +112,7 @@ class ClickableCircleAvatar2 extends StatelessWidget {
             ],
           ),
         );
-      },
-    );
+
+
   }
 }

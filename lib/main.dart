@@ -1,6 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/binding.dart';
 import 'package:svmj_web/l10n/translations.dart';
@@ -9,7 +8,9 @@ import 'package:svmj_web/themes/light.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:svmj_web/views/unknown_page.dart';
 
+
 void main() {
+
  //debugProfileBuildsEnabled = true;
  //debugProfilePaintsEnabled = true;
  //debugPrintBeginFrameBanner = true;
@@ -24,8 +25,10 @@ class MJ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       initialBinding: AllControllerBinding(),
+      defaultTransition: Transition.noTransition,
       translations: AppTranslations(),
       locale: const Locale('zh', 'CN'),
       fallbackLocale: const Locale('zh', 'CN'),
@@ -42,8 +45,8 @@ class MJ extends StatelessWidget {
       ],
       enableLog: true,
       navigatorKey: Get.key,
-      initialRoute: "/",
-      getPages: AppPage.routes,
+      initialRoute: Get.currentRoute,
+      getPages: kIsWeb?AppPage.webRoutes : AppPage.routes,
       unknownRoute: GetPage(name: '/notfound', page: () => UnknownPage()),
       /*  routingCallback: (routing) {
         print('Current Route: ${routing?.current}');
@@ -53,7 +56,7 @@ class MJ extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lighThemeData,
-      defaultTransition: Transition.rightToLeft,
+      //defaultTransition: Transition.rightToLeft,
     );
   }
 }

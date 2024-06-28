@@ -1,27 +1,33 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/home_menu_controller.dart';
-import 'package:svmj_web/themes/light.dart';
+import 'package:svmj_web/controllers/home_stream_controller.dart';
+import 'package:svmj_web/controllers/search_controller.dart';
+ import 'package:svmj_web/themes/light.dart';
+import 'package:svmj_web/views/post_content_page.dart';
+import 'package:svmj_web/views/profile_page.dart';
+import 'package:svmj_web/views/search_page.dart';
 import 'package:svmj_web/views/widgets/border_container.dart';
 import 'package:svmj_web/views/widgets/left_navigation.dart';
 import 'package:svmj_web/views/widgets/trends_view.dart';
 
-class GlobleLayout extends StatelessWidget {
-  GlobleLayout({required this.widget});
-  final Widget widget;
+import 'home_page.dart';
 
+class MainMobilePage extends StatelessWidget {
+  final HomeMenuController controller = Get.find();
+  final HomeStreamController homeStreamController = Get.find();
+  final MSearchController mscontroller = Get.find();
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return SingleChildScrollView(child: buildWebLayout(context));
+          return SingleChildScrollView(child: buildLayout(context));
         },
       ),
-      bottomNavigationBar: screenWidth <= 600 ? buildBottomBar(context) : null,
+      bottomNavigationBar:   buildBottomBar(context),
     );
   }
 
@@ -35,7 +41,7 @@ class GlobleLayout extends StatelessWidget {
     return 0;
   }
 
-  Widget buildWebLayout(BuildContext context) {
+  Widget buildLayout(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
     return SizedBox(
         height: 1000,
@@ -44,7 +50,7 @@ class GlobleLayout extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            buildLeftNavigation(context),
+         buildLeftNavigation(context) ,
             Flexible(
               child: ConstrainedBox(
                 constraints:
@@ -70,12 +76,54 @@ class GlobleLayout extends StatelessWidget {
     );
   }
 
+  Widget mobileLayout(BuildContext context) {
+    Widget page = SizedBox.shrink();
+    return Navigator(
+      key: Get.nestedKey(2),
+       onGenerateRoute: (settings) {
+        if (settings.name == '/') {
+          print(settings.name);
+          page = Obx(() {
+            switch (controller.selectedPage.value) {
+              case 0:
+                return MobileHomePage();
+              case 1:
+                return  MobileSearchPage( );
+              case 2:
+                return  MobileProfilePage();
+              default:
+                return MobileHomePage();
+            }
+          });
+        } else if (settings.name != null && settings.name!.contains('/post')) {
+          var postParam = settings.name?.replaceAll('/post/', '').split('/');
+          if (postParam!.length == 1) {
+            page = PostContentPageBase(postCode: postParam[0], replyCode: '0');
+          }
+          if (postParam.length >= 2) {
+            page = PostContentPageBase(
+                postCode: postParam[0], replyCode: postParam[1]);
+          }
+        }
+
+        /*    default:
+            print(settings.name);
+            page = HomePage();*/
+
+        return GetPageRoute(
+          page: () => page,
+          settings: settings,
+        );
+      },
+    );
+  }
+
   Widget buildMainContent(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0), // 控制距离顶部的距离
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 600.0, minWidth: 350),
-        child: widget,
+        child: mobileLayout(context),
       ),
       //),
     );
@@ -96,6 +144,7 @@ class GlobleLayout extends StatelessWidget {
 
     return Obx(() => BottomNavigationBar(
           currentIndex: homeMenuController.selectedPage.value,
+          enableFeedback: false,
           items: [
             BottomNavigationBarItem(
                 backgroundColor: MyColor.white,
@@ -113,25 +162,34 @@ class GlobleLayout extends StatelessWidget {
                 icon: Icon(CupertinoIcons.bell), label: 'notifications'),
           ],
           onTap: (index) {
+            //  print(Get.context );
             homeMenuController.changePage(index);
             switch (index) {
               case 0:
-                Get.offAllNamed('/home');
+                //  GetPlatform.isWeb?Get.offNamedUntil('/', (route) => false, id: 2,transition: Transition.noTransition):null;
+                //  GetPlatform.isWeb?  Get.until((route) => Get.currentRoute == '/home'):null;
+                /* GetPlatform.isWeb?Get.offUntil( GetPageRoute(
+                  page: () => MainPage(),
+                  transition: Transition.noTransition,
+                ),(route) => false,id:2):null;*/
+                Get.back( );
+
                 break;
               case 1:
-                Get.offAllNamed('/search');
+                Get.offNamedUntil('/', (route) => false );
+
+                ///.offNamedUntil('/search', (route) => false, id: 2);
                 break;
               case 2:
-                Get.offAllNamed('/mindrealm');
-                break;
+                Get.offNamedUntil('/', (route) => false );
               case 3:
-                Get.offAllNamed('/message');
-                break;
+                Get.offNamedUntil('/', (route) => false );
               case 4:
-                Get.offAllNamed('/notifications');
+                Get.offNamedUntil('/', (route) => false );
+
                 break;
               default:
-                Get.offAllNamed('/home');
+                Get.offNamedUntil('/', (route) => false );
             }
           },
         ));

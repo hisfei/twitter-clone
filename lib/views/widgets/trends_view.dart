@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svmj_web/controllers/trends_controller.dart';
 import 'package:svmj_web/models/trend_for_you.dart';
+import 'package:svmj_web/routers/jump.dart';
 import 'package:svmj_web/themes/light.dart';
 import 'package:svmj_web/views/widgets/search.dart';
 
@@ -73,7 +74,7 @@ class TrendsView extends StatelessWidget {
 
   Widget buildTrendItem(BuildContext context, Trend trend) {
     return InkWell(
-      onTap: () => Get.toNamed('/search'),
+      onTap: () => JumpTo('/search'),
       child: Container(
         padding: const EdgeInsets.only(left: 20.0, bottom: 5),
 

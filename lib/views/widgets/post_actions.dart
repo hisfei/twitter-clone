@@ -6,11 +6,13 @@ import 'package:svmj_web/controllers/home_stream_controller.dart';
 class PostActions extends StatelessWidget {
   final int index;
   final HomeStreamController homeStreamController = Get.find();
-
-  PostActions({required this.index});
+ final int type;
+  PostActions({required this.index, required this.type});
 
   @override
   Widget build(BuildContext context) {
+
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -42,14 +44,15 @@ class PostActions extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if (homeStreamController.loadingStat.value !=1 ) {
-              homeStreamController.toggleShareAt(index);
+             type==1?  homeStreamController.toggleForYouShareAt(index):homeStreamController.toggleFollowingShareAt(index);
             }
           },
           child: Obx(() => Icon(
-                homeStreamController.isForYouSharedList[index]
+
+            (type==1? (homeStreamController.isForYouSharedList[index]):(homeStreamController.isFollowingSharedList[index]))
                     ? CupertinoIcons.share
-                    : Icons.ios_share_outlined,
-                color: Colors.grey,
+                    : Icons.ios_share_outlined ,
+                 color: Colors.grey,
                 size: 18,
               )),
         ),

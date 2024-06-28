@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CommonStyles {
   static SliverAppBar buildAppBar(
-      int i, Widget title, Widget? leading, TabBar tabBar) {
+      int i, Widget title, Widget  leading, TabBar tabBar) {
     if (i == 1) {
       return SliverAppBar(
           floating: false,
@@ -11,7 +11,10 @@ class CommonStyles {
           toolbarHeight: 35,
           title: title,
           leading: Padding(
-              padding: const EdgeInsets.only(left: 15.0), child: leading),
+              padding: const EdgeInsets.only(left: 15.0), child:     leading,
+
+
+      )   ,
           //  actions: actions,
           bottom: _buildTabBarWithHeight(tabBar, 35));
     } else {
@@ -36,8 +39,7 @@ class CommonStyles {
           height: height,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
-            print(error);
-            return const Icon(Icons.error);
+             return const Icon(Icons.error);
           },
         ),
       ),
@@ -60,8 +62,7 @@ class CommonStyles {
       width: width,
       fit: BoxFit.cover,
       errorBuilder: (context, error, stackTrace) {
-        print(error);
-        return const Icon(Icons.error);
+         return const Icon(Icons.error);
       },
     );
   }

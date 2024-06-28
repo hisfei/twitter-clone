@@ -1,23 +1,31 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/views/login_page.dart';
+import 'package:svmj_web/routers/jump.dart';
+ import 'package:svmj_web/views/login_page.dart';
+import 'package:svmj_web/views/web_globle_layout.dart';
 
 class PostContentPage extends StatelessWidget {
+  // final AnotherController anotherController = Get.put();
+
   @override
   Widget build(BuildContext context) {
-    return PostContentPageBase();
+    String c = Get.parameters['postCode']??'';
+
+    String d = Get.parameters['replyCode']??'';
+    return GlobleWebLayout(widget: PostContentPageBase(postCode: c, replyCode: d,));
   }
 }
 
+
 class PostContentPageBase extends StatelessWidget {
-  PostContentPageBase({super.key});
+final String postCode;
+final String replyCode;
+PostContentPageBase({super.key, required this.postCode, required this.replyCode});
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.parameters['postCode'];
 
-    final d = Get.parameters['replyCode'];
 
     return Scaffold(
       body: Center(
@@ -27,11 +35,12 @@ class PostContentPageBase extends StatelessWidget {
             // IconButton(onPressed: Get.back(), icon: Icon)
             IconButton(
                 onPressed: () {
-                  Get.back();
+                  JumpBack();
+
                 },
                 icon: const Icon(Icons.arrow_back)),
-            Text('$c'),
-            Text('$d'),
+            Text(postCode),
+            Text(replyCode),
             SelectableText.rich(TextSpan(
               text: ' item.title',
               style: const TextStyle(
@@ -42,7 +51,7 @@ class PostContentPageBase extends StatelessWidget {
                 ..onTap = () {
                   //dataController.changePage(3); // 切换到 content_page
 
-                  Get.to(LoginPage(), id: 2);
+                  Get.to(LoginPage() );
                 },
             )),
           ],

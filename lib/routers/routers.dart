@@ -1,52 +1,75 @@
 import 'package:get/get.dart';
- import 'package:svmj_web/views/home_page.dart';
+import 'package:svmj_web/views/home_page.dart';
 import 'package:svmj_web/views/login_page.dart';
-import 'package:svmj_web/views/post_content_page.dart';
-import 'package:svmj_web/views/profile_page.dart';
-import 'package:svmj_web/views/search_page.dart';
 import 'package:svmj_web/views/unknown_page.dart';
+import 'package:svmj_web/views/web_main.dart';
 
 class AppPage {
-  static final routes = [
+
+  static final webRoutes=[
     GetPage(
       name: "/",
-      page: () => HomePage(),
+      page: () => MainWebLayout() ,
+      opaque: false,
       // middlewares: [AuthMiddleWare()],
       transition: Transition.noTransition,
     ),
     GetPage(
       name: "/home",
-      page: () => HomePage(),
-      //middlewares: [AuthMiddleWare()],
-      transition: Transition.noTransition,
-    ),
-    GetPage(
-      name: "/search/:searchParam",
-      page: () => SearchPage(),
+      page: () => MainWebLayout() ,
       // middlewares: [AuthMiddleWare()],
       transition: Transition.noTransition,
     ),
     GetPage(
       name: "/search",
-      page: () => SearchPage(),
+      page: () => MainWebLayout(),
       // middlewares: [AuthMiddleWare()],
       transition: Transition.noTransition,
     ),
     GetPage(
       name: "/profile",
-      page: () => ProfilePage(),
+      page: () => MainWebLayout(),
       // middlewares: [AuthMiddleWare()],
       transition: Transition.noTransition,
     ),
     GetPage(
       name: "/post/:postCode/:replyCode",
-      page: () => PostContentPage(),
+      page: () => MainWebLayout(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: "/mindrealm",
+      page: () => MainWebLayout(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: "/bookmarks",
+      page: () => MainWebLayout(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: "/notifications",
+      page: () => MainWebLayout(),
       transition: Transition.noTransition,
     ),
     GetPage(
       name: "/login",
       page: () => LoginPage(),
     ),
+  ];
+
+  static final routes = [
+
+
+
+
+    GetPage(
+      name: "/",
+      page: () => WebHomePage() ,
+      // middlewares: [AuthMiddleWare()],
+      transition: Transition.noTransition,
+    ),
+
     GetPage(name: '/notfound', page: () => UnknownPage()),
   ];
 }

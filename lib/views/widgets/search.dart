@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:svmj_web/routers/jump.dart';
 import 'package:svmj_web/themes/light.dart';
 
 class Search extends StatelessWidget {
@@ -45,7 +45,7 @@ class Search extends StatelessWidget {
                   Icon(Icons.search, color: MyColor.borderGrey), // 设置搜索图标颜色
             ),
             onSubmitted: (value) {
-              Get.toNamed('/search/$value');
+              JumpTo('/search/$value');
               // arguments: {'query': value}); // 导航到 /search 路由并传递参数
             },
             // onChanged: controller.filterTrends,

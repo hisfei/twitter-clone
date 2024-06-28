@@ -1,13 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:svmj_web/models/post_item.dart';
-import 'package:svmj_web/views/widgets/clickable_circle_avatar.dart';
+import 'package:svmj_web/routers/jump.dart';
+ import 'package:svmj_web/views/widgets/clickable_circle_avatar.dart';
 import 'package:svmj_web/views/widgets/profile_card.dart';
+
 
 class PostHeader extends StatelessWidget {
   final PostItem item;
-  PostHeader({required this.item});
+
+  PostHeader({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class PostHeader extends StatelessWidget {
       Row(
         children: [
           ClickableCircleAvatar2(
+
             radius: 20,
             userName: item.isIdea ? item.authorName : item.replyAuthorName,
             userCode: item.isIdea ? item.authorCode : item.replyAuthorCode,
@@ -22,7 +25,7 @@ class PostHeader extends StatelessWidget {
             replyTime: '5分钟前',
             minSize: 30,
             maxSize: 50,
-            overlayContent: ProfileCard(userCode: item.replyAuthorCode),
+            overlayContent: ProfileCard(),
             imageUrl: item.isIdea ? item.authorAvatar : item.replyAuthorAvatar,
             onTap: () {
               // 执行其他操作
@@ -59,8 +62,10 @@ class PostHeader extends StatelessWidget {
                       ..onTap = () {
                         //dataController.changePage(3); // 切换到 content_page
 
-                        Get.toNamed('/post/${item.postCode}/${item.replyCode}');
-                        //Navigator.pushNamed(context, '/details');
+                        JumpTo('/post/${item.postCode}/${item.replyCode}'   );
+
+                        //updateUrl('/post/${item.postCode}/${item.replyCode}');
+                       //Navigator.pushNamed(context, '/details');
                       },
                   ),
                   const WidgetSpan(
