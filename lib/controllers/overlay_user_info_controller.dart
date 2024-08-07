@@ -11,7 +11,7 @@ import '../models/user_info.dart';
 import 'gc.dart';
 
 
-class ClickableCircleAvatarController extends AsyncController {
+class OverlayPopController extends AsyncController {
   OverlayEntry? _overlayEntry;
   //var _isMouseOver = false.obs;
   var u = UserInfo().obs;
@@ -111,7 +111,7 @@ class ClickableCircleAvatarController extends AsyncController {
             child: GestureDetector(
               onTap: () => hideOverlay(0),
               child: Container(
-                color: Colors.grey, // Semi-transparent color
+                color: Colors.transparent, // Semi-transparent color
               ),
             ),
           ),

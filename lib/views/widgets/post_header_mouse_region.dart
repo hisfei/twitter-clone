@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/controllers/clickable_circle_avatar_controller.dart';
+import 'package:svmj_web/controllers/overlay_user_info_controller.dart';
 
 
 class ClickableCircleAvatar2 extends StatelessWidget {
@@ -28,7 +28,7 @@ class ClickableCircleAvatar2 extends StatelessWidget {
     this.minSize = 60,
     this.maxSize = 100,
   });
-  ClickableCircleAvatarController controller =Get.find();
+  OverlayUserInfoController controller =Get.find();
   @override
   Widget build( BuildContext context) {
    controller.updateOverlayContent(overlayContent);
