@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:svmj_web/controllers/clickable_circle_avatar_controller.dart';
+import 'package:svmj_web/controllers/overlay_user_info_controller.dart';
 import 'package:svmj_web/models/user_info.dart';
 import 'package:svmj_web/routers/jump.dart';
 import 'package:svmj_web/themes/light.dart';
@@ -81,15 +81,15 @@ class UserListPageBase extends StatelessWidget {
     this.minSize = 60,
     this.maxSize = 100,
   });
-  ClickableCircleAvatarController controller =Get.find();
+  OverlayUserInfoController overlayPopController =Get.find();
   @override
   Widget build(BuildContext context) {
 
-        controller.updateOverlayContent(overlayContent);
+    overlayPopController.updateOverlayContent(overlayContent);
         return Row(
           children: [
             MouseRegion(
-              onEnter: (_) => controller.showOverlay(context,userCode),
+              onEnter: (_) => overlayPopController.showOverlay(context,userCode),
               //onExit: (_) => controller.hideOverlay(300),
               child: GestureDetector(
                 child: ConstrainedBox(

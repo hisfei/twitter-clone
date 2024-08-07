@@ -53,10 +53,13 @@ class buildFollowingList extends StatelessWidget {
             padding: EdgeInsets.zero,
             itemCount: homeStreamController.itemsFollowing.length + 1,
             itemBuilder: (context, index) {
-              if (index == homeStreamController.itemsFollowing.length) {
-                homeStreamController.loadMoreFollowing();
+              if (index == homeStreamController.itemsFollowing.length  ) {
+                if (!homeStreamController.hasError.value){
+                  homeStreamController.loadMoreFollowing();
+                  return   const Center(child: CircularProgressIndicator());
+                }
+                return SizedBox.shrink();
 
-                return const Center(child: CircularProgressIndicator());
               }
               return HomeStream(
                 item: homeStreamController.itemsFollowing[index],
@@ -83,9 +86,13 @@ class buildForYouList extends StatelessWidget {
             itemCount: homeStreamController.itemsForYou.length + 1,
             itemBuilder: (context, index) {
               if (index == homeStreamController.itemsForYou.length) {
-                homeStreamController.loadMoreForYou();
+                if (!homeStreamController.hasError.value) {
+                  homeStreamController.loadMoreForYou();
 
-                return const Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
+                }  return SizedBox.shrink();
+
+
               }
               return HomeStream(
                 item: homeStreamController.itemsForYou[index],

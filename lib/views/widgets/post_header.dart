@@ -2,9 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:svmj_web/models/post_item.dart';
 import 'package:svmj_web/routers/jump.dart';
- import 'package:svmj_web/views/widgets/clickable_circle_avatar.dart';
+import 'package:svmj_web/views/widgets/post_header_mouse_region.dart';
 import 'package:svmj_web/views/widgets/profile_card.dart';
-
 
 class PostHeader extends StatelessWidget {
   final PostItem item;
@@ -16,17 +15,16 @@ class PostHeader extends StatelessWidget {
     return Column(children: [
       Row(
         children: [
-          ClickableCircleAvatar2(
-
+          PostHeaderMouseRegion(
             radius: 20,
-            userName: item.isIdea ? item.authorName : item.replyAuthorName,
-            userCode: item.isIdea ? item.authorCode : item.replyAuthorCode,
-            bio: '这是个人简介',
-            replyTime: '5分钟前',
+            userName: item.userName,
+            userCode: item.userCode,
+            isVerified: item.isVerified,
+            replyTime: item.createdAt,
             minSize: 30,
             maxSize: 50,
             overlayContent: ProfileCard(),
-            imageUrl: item.isIdea ? item.authorAvatar : item.replyAuthorAvatar,
+            imageUrl: item.userAvatar,
             onTap: () {
               // 执行其他操作
               print('CircleAvatar 被点击了');
@@ -62,10 +60,10 @@ class PostHeader extends StatelessWidget {
                       ..onTap = () {
                         //dataController.changePage(3); // 切换到 content_page
 
-                        JumpTo('/post/${item.postCode}/${item.replyCode}'   );
+                        JumpTo('/post/${item.postCode}/${item.replyCode}');
 
                         //updateUrl('/post/${item.postCode}/${item.replyCode}');
-                       //Navigator.pushNamed(context, '/details');
+                        //Navigator.pushNamed(context, '/details');
                       },
                   ),
                   const WidgetSpan(

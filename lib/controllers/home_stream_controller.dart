@@ -71,8 +71,8 @@ class HomeStreamController extends AsyncController {
 
 
       endRequest();
-    } catch (e) {
-      endRequest();
+    }catch (e) {
+
       setError('Error occurred while loading more data: $e');
     } finally {
       endRequest();

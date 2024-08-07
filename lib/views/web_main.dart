@@ -15,8 +15,8 @@ import 'home_page.dart';
 
 class MainWebLayout extends StatelessWidget {
   final HomeMenuController controller = Get.find();
-    String url = Get.currentRoute;
-bool t =false;
+  String url = Get.currentRoute;
+  bool t = false;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
@@ -56,9 +56,8 @@ bool t =false;
               child: ConstrainedBox(
                 constraints:
                     const BoxConstraints(maxWidth: 600.0, minWidth: 380),
-                child: Container(
-                    child: MyBorderContainer(
-                        widget: buildMainContent(context), location: 'lr')),
+                child: MyBorderContainer(
+                    widget: buildMainContent(context), location: 'lr'),
               ),
             ),
             //MyBorderContainer(widget: buildMainContent(context), location: 'lr'),
@@ -90,14 +89,13 @@ bool t =false;
 
   Widget webLayout(BuildContext context) {
     Widget page = const SizedBox.shrink();
-    GC gc=Get.put(GC());
+    GC gc = Get.put(GC());
     gc.setContext(context);
     //   Navigator.of(context, rootNavigator: true).pushNamed(Get.currentRoute);
     return Navigator(
       reportsRouteUpdateToEngine: t,
       key: Get.nestedKey(2),
       onGenerateRoute: (settings) {
-
         if ((settings.name == '/' || settings.name == '') &&
             Get.currentRoute.toString() != '') {
           url = Get.currentRoute.toString();
@@ -131,14 +129,14 @@ bool t =false;
         } else {
           switch (url) {
             case '/search':
-              page = MobileSearchPage( );
+              page = MobileSearchPage();
             case '/profile':
               page = MobileProfilePage();
             default:
               print('default:${settings.name}');
           }
         }
-        t=true;
+        t = true;
         return GetPageRoute(
           page: () => page,
           settings: settings,

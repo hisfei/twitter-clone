@@ -1,18 +1,18 @@
  import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svmj_web/controllers/clickable_circle_avatar_controller.dart';
+import 'package:svmj_web/controllers/overlay_user_info_controller.dart';
 import 'package:svmj_web/themes/light.dart';
 
 class ProfileCard extends StatelessWidget {
-  final ClickableCircleAvatarController controller = Get.find();
+  final OverlayUserInfoController overlayPopController = Get.find();
 
   ProfileCard({super.key });
 
   @override
   Widget build(BuildContext context) {
      return Obx(() {
-      if (controller.loadingStat.value != 2) {
+      if (overlayPopController.loadingStat.value != 2) {
         return Container(
             width: 280,
             padding: const EdgeInsets.all(10),
@@ -31,8 +31,8 @@ class ProfileCard extends StatelessWidget {
       } else {
         return MouseRegion(
             onEnter: (_) =>
-                controller.showOverlay(context,controller.u.value.userCode),
-            onExit: (_) => controller.hideOverlay(0),
+                overlayPopController.showOverlay(context,overlayPopController.u.value.userCode),
+            onExit: (_) => overlayPopController.hideOverlay(0),
             child: Container(
               width: 280,
               padding: const EdgeInsets.all(10),
@@ -54,7 +54,7 @@ class ProfileCard extends StatelessWidget {
                   HeaderSection(context),
                   const SizedBox(height: 10),
                   Text(
-                    controller.u.value.bio,
+                    overlayPopController.u.value.bio,
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                     ),
@@ -64,13 +64,13 @@ class ProfileCard extends StatelessWidget {
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       StatItem(
-                          count: controller.u.value.followingCount,
+                          count: overlayPopController.u.value.followingCount,
                           label: 'Following'),
                       const SizedBox(
                         width: 15,
                       ),
                       StatItem(
-                          count: controller.u.value.followerCount,
+                          count: overlayPopController.u.value.followerCount,
                           label: 'Followers'),
                     ],
                   ),
@@ -94,7 +94,7 @@ class ProfileCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: NetworkImage(controller.u.value.userAvatar),
+            backgroundImage: NetworkImage(overlayPopController.u.value.userAvatar),
           ),
           const SizedBox(width: 10),
           ElevatedButton(
@@ -116,7 +116,7 @@ class ProfileCard extends StatelessWidget {
         Row(
           children: [
             Text(
-              controller.u.value.userName,
+              overlayPopController.u.value.userName,
               style: GoogleFonts.roboto(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
@@ -130,7 +130,7 @@ class ProfileCard extends StatelessWidget {
           ],
         ),
         Text(
-          '@${controller.u.value.userCode}',
+          '@${overlayPopController.u.value.userCode}',
           style: GoogleFonts.roboto(
             fontSize: 13,
             color: Colors.grey[600],

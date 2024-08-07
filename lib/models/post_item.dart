@@ -1,61 +1,73 @@
 class PostItem {
-  final bool isIdea;
   final int postCode;
   final String postType;
   final String title;
   final String tag;
-  final String authorCode;
-  final String authorName;
-  final String authorAvatar;
+  final String userCode;
+  final String userName;
+  final String userAvatar;
   final String createdAt;
-  final String replyAuthorCode;
-  final String replyAuthorName;
-  final String replyAuthorAvatar;
   final int replyCode;
   final List<String> imageUrls;
-  final String replyContent;
+  final bool isVerified;
+  final String content;
   final int likeCount;
   final int viewCount;
   final int commentCount;
 
   PostItem({
-    required this.isIdea,
     required this.postCode,
     required this.postType,
     required this.title,
     required this.tag,
-    required this.authorCode,
-    required this.authorName,
-    required this.authorAvatar,
+    required this.userCode,
+    required this.userName,
+    required this.userAvatar,
     required this.createdAt,
-    required this.replyAuthorCode,
-    required this.replyAuthorName,
-    required this.replyAuthorAvatar,
     required this.replyCode,
     required this.imageUrls,
-    required this.replyContent,
+    required this.content,
     required this.likeCount,
     required this.viewCount,
     required this.commentCount,
+    required this.isVerified,
   });
 
   factory PostItem.fromJson(Map<String, dynamic> json) {
+    try {
+      return PostItem(
+        isVerified: json['isVerified'] ?? false,
+        postCode: json['postCode'],
+        postType: json['postType'],
+        title: json['title'],
+        tag: json['tag'] ?? '',
+        userCode: json['userCode'],
+        userName: json['userName'],
+        userAvatar: json['userAvatar'],
+        createdAt: json['createdAt'] ?? '',
+        replyCode: json['replyCode'],
+        imageUrls: List<String>.from(json['imageUrls'] ?? []),
+        content: json['content'] ?? '',
+        likeCount: json['likeCount'] ?? 0,
+        viewCount: json['viewCount'] ?? 0,
+        commentCount: json['commentCount'] ?? 0,
+      );
+    } catch (e) {
+      print(e);
+    }
     return PostItem(
-      isIdea: json['isIdea'],
+      isVerified: json['isVerified'] ?? false,
       postCode: json['postCode'],
       postType: json['postType'],
       title: json['title'],
       tag: json['tag'] ?? '',
-      authorCode: json['authorCode'],
-      authorName: json['authorName'],
-      authorAvatar: json['authorAvatar'],
-      createdAt: json['createdAt'],
-      replyAuthorCode: json['replyAuthorCode'],
-      replyAuthorName: json['replyAuthorName'],
-      replyAuthorAvatar: json['replyAuthorAvatar'],
+      userCode: json['userCode'],
+      userName: json['userName'],
+      userAvatar: json['userAvatar'],
+      createdAt: json['createdAt'] ?? '',
       replyCode: json['replyCode'],
       imageUrls: List<String>.from(json['imageUrls'] ?? []),
-      replyContent: json['replyContent'] ?? '',
+      content: json['content'] ?? '',
       likeCount: json['likeCount'] ?? 0,
       viewCount: json['viewCount'] ?? 0,
       commentCount: json['commentCount'] ?? 0,

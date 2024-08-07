@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:svmj_web/controllers/home_menu_controller.dart';
 import 'package:svmj_web/controllers/trends_controller.dart';
 import 'package:svmj_web/models/trend_for_you.dart';
 import 'package:svmj_web/routers/jump.dart';
@@ -12,7 +13,6 @@ class TrendsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TrendsController controller = Get.find();
-
     return Obx(() {
       if (controller.isLoading.value) {
         return const Center(child: CircularProgressIndicator());
@@ -73,8 +73,12 @@ class TrendsView extends StatelessWidget {
   }
 
   Widget buildTrendItem(BuildContext context, Trend trend) {
+    final HomeMenuController homeMenuController = Get.find();
+
     return InkWell(
-      onTap: () => JumpTo('/search'),
+      onTap: ()   {
+        homeMenuController.changePage(1);
+        JumpTo('/search');},
       child: Container(
         padding: const EdgeInsets.only(left: 20.0, bottom: 5),
 

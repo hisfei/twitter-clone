@@ -11,7 +11,7 @@ import '../models/user_info.dart';
 import 'gc.dart';
 
 
-class OverlayPopController extends AsyncController {
+class OverlayUserInfoController extends AsyncController {
   OverlayEntry? _overlayEntry;
   //var _isMouseOver = false.obs;
   var u = UserInfo().obs;

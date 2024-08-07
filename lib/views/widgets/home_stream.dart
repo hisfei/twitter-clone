@@ -26,7 +26,7 @@ class HomeStream extends StatelessWidget {
             PostHeader(item: item),
             const SizedBox(height: 8),
             SelectableText(
-              item.replyContent,
+              item.content,
               style: const TextStyle(
                 fontSize: 14,
                 color: Colors.black54,

@@ -13,7 +13,7 @@ class WebSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return    GlobleWebLayout(widget: MobileSearchPage( ) )  ;
+    return  GlobleWebLayout(widget: MobileSearchPage( ) )  ;
 
   }
 }
@@ -21,10 +21,10 @@ class MobileSearchPage extends StatelessWidget {
   final MSearchController mscontroller = Get.find();
   final HomeMenuController controller = Get.find();
 
-    MobileSearchPage(  );
+    MobileSearchPage({super.key});
   @override
   Widget build(context) {
-    controller.selectedPage(1);
+    //controller.selectedPage(1);
     return GloableContentLayout(
       tabs: [
         Tab(text: 'user'.tr),

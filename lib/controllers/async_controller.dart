@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class AsyncController extends GetxController {
@@ -25,6 +26,11 @@ abstract class AsyncController extends GetxController {
     errorMessage.value = message;
 
     loadingStat.value = 2;
+    Get.snackbar('Error', '请求失败，请检查网络连接',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        duration: Duration(seconds: 2));
+
   }
 
   void setLoadDataNone() {

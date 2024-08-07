@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:svmj_web/controllers/clickable_circle_avatar_controller.dart';
+import 'package:svmj_web/controllers/overlay_user_info_controller.dart';
 import 'package:svmj_web/controllers/login_user_info.dart';
 import 'package:svmj_web/controllers/search_controller.dart';
 import 'package:svmj_web/controllers/user_info_controller.dart';
@@ -25,7 +25,7 @@ class AllControllerBinding implements Bindings {
 
 
     //// TODO: implement dependencies
-    Get.lazyPut(() => ClickableCircleAvatarController(), fenix: true);
+    Get.lazyPut(() => OverlayUserInfoController(), fenix: true);
     //Get.lazyPut(() => HomeMenuController(), fenix: true);
     //Get.lazyPut(() => TrendsController(), fenix: true);
     Get.lazyPut(() => UserInfoController(), fenix: true);
