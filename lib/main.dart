@@ -16,7 +16,7 @@ void main() {
  //debugPrintBeginFrameBanner = true;
  //debugProfilePaintsEnabled = true;
  //debugPaintLayerBordersEnabled = true;
-  // PerformanceApp
+ // PerformanceApp
   runApp(const MJ());
 }
 
